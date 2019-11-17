@@ -1,8 +1,8 @@
-- DOGS API
+# DOGS API
 
-\*\* Local development
+## Local development
 
-\*\*\* Prerequisites:
+### Prerequisites:
 
 - install node (recommended - use nvm - node version manager - https://github.com/nvm-sh/nvm#installation-and-update)
 - install yarn (package manager - https://yarnpkg.com/lang/en/docs/install)
@@ -12,7 +12,8 @@
   - create database in mysql cli (`CREATE DATABASE <db_name>;`)
   - `mysql -u root password <password> <db_name>`
 
-\*\*\* Installation
+### Installation
+
 Inside `dogs-api` run following commands:
 
 ```
@@ -23,10 +24,11 @@ yarn seed
 yarn start-dev
 ```
 
-\*\*\* Verify your installation and starting:
+### Verify your installation and starting:
+
 Visit http://localhost:4000/dogs in the browser and you should see some seeded items.
 
-\*\* Endpoints:
+## Endpoints:
 
 - GET / - see welcome page
 
