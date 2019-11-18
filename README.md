@@ -33,6 +33,7 @@ Visit http://localhost:4000/dogs in the browser and you should see some seeded i
 - GET / - see welcome page
 
 - GET /dogs - get list of dogs
+- GET /dogs/:id - get dog by id
 
 - POST /dogs - post a dog to the list
   send json as body like this:

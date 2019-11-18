@@ -36,6 +36,20 @@ app.get("/dogs", (req, res) => {
   });
 });
 
+app.get("/dogs/:id", (req, res) => {
+  const { id } = req.params;
+  const SELECT_DOG_BY_ID = `SELECT * FROM dogs WHERE ID = ${id}`;
+  connection.query(SELECT_DOG_BY_ID, (err, results) => {
+    if (err) {
+      return res.send(err);
+    }
+
+    return res.json({
+      data: results
+    });
+  });
+});
+
 app.post("/dogs", jsonParser, (req, res) => {
   const { name, age, breed, description } = req.body;
   const INSERT_DOG = `INSERT INTO dogs (name, age, breed, description) VALUES('${name}', '${age}', '${breed}', '${description}')`;
