@@ -40,9 +40,25 @@ Visit http://localhost:4000/dogs in the browser and you should see some seeded i
 
 ```
 {
-     "name": "yo",
+     "name": "Fetch",
      "age": 2,
-     "description": "lorem ipsum dolor amet",
-     "breed": "LabradorLabradorLabradorLabradorLabradorLabrad"
+     "description": "Very cute, but also fetches like a boss!",
+     "breed": "Labrador"
+}
+```
+
+- GET /shelters - get list of shelters
+- GET /shelters/:id - get shelter by id
+
+- POST /shelters - post a shelter to the list
+  send json as body like this:
+
+```
+{
+	"name": "wiener tierschutzverein",
+	"address_1": "Triester Straße 8",
+	"address_2": "2331 Vösendorf",
+	"description": "Die Stimme der Tiere. Das Original seit 1846.",
+	"url": "https://www.wiener-tierschutzverein.org/"
 }
 ```
