@@ -8,6 +8,7 @@ function createDogsTable() {
         age VARCHAR(10) NOT NULL,
         description VARCHAR(600) NOT NULL,
         breed VARCHAR(255) NOT NULL,
+        shelter_id INT NOT NULL,
         PRIMARY KEY ( id )
       );
     `;

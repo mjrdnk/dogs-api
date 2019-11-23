@@ -107,11 +107,10 @@ app.post("/shelter", jsonParser, (req, res) => {
   });
 });
 
-app.post("/shelter", jsonParser, (req, res) => {
-  const { name, address_1, address_2, description, url } = req.body;
-  const INSERT_SHELTER = `INSERT INTO shelters (name, address_1, address_2, description, url) VALUES('${name}', '${address_1}', '${address_2}', '${description}', '${url}')`;
-
-  connection.query(INSERT_SHELTER, (err, results) => {
+app.get("/shelter/:id/dog", (req, res) => {
+  const { id } = req.params;
+  const SELECT_DOGS_FROM_SHELTER = `SELECT * FROM dogs WHERE shelter_id = ${id}`;
+  connection.query(SELECT_DOGS_FROM_SHELTER, (err, results) => {
     if (err) {
       return res.send(err);
     }
