@@ -7,6 +7,7 @@ const { connection } = require("./dbConnection");
 const app = express();
 
 const SELECT_ALL_DOGS = "SELECT * FROM dogs;";
+const SELECT_ALL_SHELTERS = "SELECT * FROM shelters;";
 
 connection.connect((err, res) => {
   if (err) {
@@ -55,6 +56,47 @@ app.post("/dogs", jsonParser, (req, res) => {
   const INSERT_DOG = `INSERT INTO dogs (name, age, breed, description) VALUES('${name}', '${age}', '${breed}', '${description}')`;
 
   connection.query(INSERT_DOG, (err, results) => {
+    if (err) {
+      return res.send(err);
+    }
+
+    return res.json({
+      data: results
+    });
+  });
+});
+
+app.get("/shelters", (req, res) => {
+  connection.query(SELECT_ALL_SHELTERS, (err, results) => {
+    if (err) {
+      return res.send(err);
+    }
+
+    return res.json({
+      data: results
+    });
+  });
+});
+
+app.get("/shelters/:id", (req, res) => {
+  const { id } = req.params;
+  const SELECT_SHELTER_BY_ID = `SELECT * FROM shelters WHERE ID = ${id}`;
+  connection.query(SELECT_SHELTER_BY_ID, (err, results) => {
+    if (err) {
+      return res.send(err);
+    }
+
+    return res.json({
+      data: results
+    });
+  });
+});
+
+app.post("/shelters", jsonParser, (req, res) => {
+  const { name, address_1, address_2, description, url } = req.body;
+  const INSERT_SHELTER = `INSERT INTO shelters (name, address_1, address_2, description, url) VALUES('${name}', '${address_1}', '${address_2}', '${description}', '${url}')`;
+
+  connection.query(INSERT_SHELTER, (err, results) => {
     if (err) {
       return res.send(err);
     }
