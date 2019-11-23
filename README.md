@@ -26,16 +26,18 @@ yarn start-dev
 
 ### Verify your installation and starting:
 
-Visit http://localhost:4000/dogs in the browser and you should see some seeded items.
+Visit http://localhost:4000/dog in the browser and you should see some seeded items.
 
 ## Endpoints:
 
+### root
 - GET / - see welcome page
 
-- GET /dogs - get list of dogs
-- GET /dogs/:id - get dog by id
+### dog
+- GET /dog - get list of dogs
+- GET /dog/:id - get dog by id
 
-- POST /dogs - post a dog to the list
+- POST /dog - post a dog to the list
   send json as body like this:
 
 ```
@@ -47,10 +49,11 @@ Visit http://localhost:4000/dogs in the browser and you should see some seeded i
 }
 ```
 
-- GET /shelters - get list of shelters
-- GET /shelters/:id - get shelter by id
+### shelter
+- GET /shelter - get list of shelters
+- GET /shelter/:id - get shelter by id
 
-- POST /shelters - post a shelter to the list
+- POST /shelter - post a shelter to the list
   send json as body like this:
 
 ```
@@ -62,3 +65,6 @@ Visit http://localhost:4000/dogs in the browser and you should see some seeded i
 	"url": "https://www.wiener-tierschutzverein.org/"
 }
 ```
+
+### dog from shelter
+- GET /shelter/:id/dog - get list of dogs shelter of :id
