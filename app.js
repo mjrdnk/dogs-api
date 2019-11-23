@@ -22,10 +22,10 @@ const PORT = process.env.PORT || 4000;
 const jsonParser = bodyParser.json();
 
 app.get("/", (req, res) => {
-  res.send("Welcome to dogs api. Go to /dogs to get all the dogs.");
+  res.send("Welcome to dogs api. Go to /dog to get all the dogs.");
 });
 
-app.get("/dogs", (req, res) => {
+app.get("/dog", (req, res) => {
   connection.query(SELECT_ALL_DOGS, (err, results) => {
     if (err) {
       return res.send(err);
@@ -37,7 +37,7 @@ app.get("/dogs", (req, res) => {
   });
 });
 
-app.get("/dogs/:id", (req, res) => {
+app.get("/dog/:id", (req, res) => {
   const { id } = req.params;
   const SELECT_DOG_BY_ID = `SELECT * FROM dogs WHERE ID = ${id}`;
   connection.query(SELECT_DOG_BY_ID, (err, results) => {
@@ -66,7 +66,7 @@ app.post("/dogs", jsonParser, (req, res) => {
   });
 });
 
-app.get("/shelters", (req, res) => {
+app.get("/shelter", (req, res) => {
   connection.query(SELECT_ALL_SHELTERS, (err, results) => {
     if (err) {
       return res.send(err);
@@ -78,7 +78,7 @@ app.get("/shelters", (req, res) => {
   });
 });
 
-app.get("/shelters/:id", (req, res) => {
+app.get("/shelter/:id", (req, res) => {
   const { id } = req.params;
   const SELECT_SHELTER_BY_ID = `SELECT * FROM shelters WHERE ID = ${id}`;
   connection.query(SELECT_SHELTER_BY_ID, (err, results) => {
@@ -92,7 +92,22 @@ app.get("/shelters/:id", (req, res) => {
   });
 });
 
-app.post("/shelters", jsonParser, (req, res) => {
+app.post("/shelter", jsonParser, (req, res) => {
+  const { name, address_1, address_2, description, url } = req.body;
+  const INSERT_SHELTER = `INSERT INTO shelters (name, address_1, address_2, description, url) VALUES('${name}', '${address_1}', '${address_2}', '${description}', '${url}')`;
+
+  connection.query(INSERT_SHELTER, (err, results) => {
+    if (err) {
+      return res.send(err);
+    }
+
+    return res.json({
+      data: results
+    });
+  });
+});
+
+app.post("/shelter", jsonParser, (req, res) => {
   const { name, address_1, address_2, description, url } = req.body;
   const INSERT_SHELTER = `INSERT INTO shelters (name, address_1, address_2, description, url) VALUES('${name}', '${address_1}', '${address_2}', '${description}', '${url}')`;
 
